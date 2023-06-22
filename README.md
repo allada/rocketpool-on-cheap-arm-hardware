@@ -16,7 +16,7 @@ I used a [Kill A Watt](https://en.wikipedia.org/wiki/Kill_A_Watt) to measure my 
 
 | Hardware | Cost |
 | -------- | ---- |
-| [Rock5b](https://radxa.com/product/detailed?productName=rock5b) | $189.00 USD |
+| [Rock5b 16GB Ram](https://radxa.com/product/detailed?productName=rock5b) | $189.00 USD |
 | [SK hynix Gold P31 2TB PCIe NVMe Gen3 M.2 2280](https://www.amazon.com/dp/B099RHVB42?psc=1&ref=ppx_yo2ov_dt_b_product_details) | $108.00 USD |
 | [Vertiv Liebert PST5 350VA 200W UPS](https://www.amazon.com/dp/B07CBG3ZPB?psc=1&ref=ppx_yo2ov_dt_b_product_details) | $54.00 USD |
 | [Rock5b Metal case](https://radxa.com/product/accessories?accessoryName=ae003) | $15.00 USD |
