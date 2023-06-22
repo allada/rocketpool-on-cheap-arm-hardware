@@ -11,6 +11,14 @@ In this article you will need:
 * M.2 NVMe SSD (I suggest at least 2TB for future proofing)
 * Rock5b (or other ARM hardware)
 
+> **WARNING**
+> Using anything other than an NVMe is unlikely to keep up with new blocks.
+
+## Useful links
+* [Ethereum on ARM](https://ethereum-on-arm-documentation.readthedocs.io)
+* [Rocketpool docs](https://docs.rocketpool.net/guides/node/responsibilities.html)
+
+
 ## My stats & costs
 I used a [Kill A Watt](https://en.wikipedia.org/wiki/Kill_A_Watt) to measure my Rock5b's energy usage which is about 6.227 kWh/mo.
 
