@@ -11,6 +11,41 @@ In this article you will need:
 * M.2 NVMe SSD (I suggest at least 2TB for future proofing)
 * Rock5b (or other ARM hardware)
 
+
+Table of contents
+=================
+  * [Rock5b setup](#rock5b-setup)
+    * [Download and flash Ubuntu to SD card](#download-and-flash-ubuntu-to-sd-card)
+    * [Flash SPI on Rock5b](#flash-spi-on-rock5b)
+    * [Install Ubuntu on NVMe](#install-ubuntu-on-nvme)
+    * [Reconfigure partition table](#reconfigure-partition-table)
+    * [Verify it boots to the NVMe](#verify-it-boots-to-the-nvme)
+    * [Compile & install new kernel (Rock5b)](#compile--install-new-kernel-rock5b)
+    * [Compile the kernel](#compile-the-kernel)
+    * [Install the kernel](#install-the-kernel)
+    * [Verify the kernel](#verify-the-kernel)
+    * [Cleanup needless build files](#cleanup-needless-build-files)
+  * [Install ZFS](#install-zfs)
+    * [Install ZFS compiletime dependencies](#install-zfs-compiletime-dependencies)
+    * [Extract and build ZFS](#extract-and-build-zfs)
+    * [Cleanup unused files](#cleanup-unused-files)
+    * [Verify ZFS is working](#verify-zfs-is-working)
+    * [Configure NVMe on ZFS](#configure-nvme-on-zfs)
+  * [Configure the system](#configure-the-system)
+    * [Install docker using docker's repo](#install-docker-using-dockers-repo)
+  * [Install & Configure rocketpool](#install--configure-rocketpool)
+    * [Install Rocketpool dependencies](#install-rocketpool-dependencies)
+    * [Configure Rocketpool](#configure-rocketpool)
+    * [Configure Rocketpool to use ZFS](#configure-rocketpool-to-use-zfs)
+  * [Final system configuration](#final-system-configuration)
+    * [Bootup script](#bootup-script)
+    * [Add log cleanup cron](#add-log-cleanup-cron)
+    * [Install check health scripts](#install-check-health-scripts)
+    * [Monitoring services](#monitoring-services)
+    * [Secure your node](#secure-your-node)
+    * [Using your rocketpool validator node](#using-your-rocketpool-validator-node)
+
+
 # Rock5b setup
 Here we will be going over the step-by-step process of getting the Rock5b board setup. At the time of writing this, the device is shipped with firmware that must be upgraded in order to run an Ethereum node on the hardware.
 
@@ -606,7 +641,7 @@ echo "@reboot root sh /root/start_rocketpool_node.sh" >> /etc/crontab
 echo "* 0,12 * * * root journalctl --vacuum-size=100M" >> /etc/crontab
 ```
 
-# Install check health scripts
+## Install check health scripts
 This health check script will check if the node is healthy and if not it will attempt to restart the relevant services. The big one here is on startup `rocketpool_validator` sometimes does not pickup on the fact that `geth` and `nimbus` are actually caught up, so it will restart it in such case.
 
 This also setsup a service to run the health check every minute. We use a service instead of a cron so we get logging with pruning.
@@ -692,3 +727,12 @@ systemctl daemon-reload
 systemctl enable validator-health-check
 systemctl start validator-health-check
 ```
+
+## Monitoring services
+Follow the steps outlined on [Rocketpool's Monitoring & Maintenance](https://docs.rocketpool.net/guides/node/maintenance/overview.html) page.
+
+## Secure your node
+Follow the steps outlined on [Rocketpool's Securing your node](https://docs.rocketpool.net/guides/node/securing-your-node.html) page.
+
+## Using your rocketpool validator node
+Follow the steps outlined on [Rocketpool's Provisioning your node](https://docs.rocketpool.net/guides/node/provisioning/overview.html).
