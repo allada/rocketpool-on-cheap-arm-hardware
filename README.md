@@ -704,11 +704,11 @@ touch /tmp/rocketpool_health_check.lock
     sleep 3m
   fi
 
-  if ! (docker logs rocketpool_validator --since 3m | grep 'node_status=synced') ; then
+  if ! (docker logs rocketpool_validator --since 3m | grep 'bad_nodes=0') ; then
     # It looks like sometimes this does not work as expected, so sleep for a min
     # then try again to ensure we don't kill it needlessly.
     sleep 1m
-    if ! (docker logs rocketpool_validator --since 3m | grep 'node_status=synced') ; then
+    if ! (docker logs rocketpool_validator --since 3m | grep 'bad_nodes=0') ; then
       docker restart rocketpool_validator
       sleep 6m
     fi
